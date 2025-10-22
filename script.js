@@ -14,16 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
     "video/sound6.mp4",
   ];
 
+  // === WYBIERZ LOSOWE VIDEO I ZACZNIJ ŁADOWAĆ ===
   function getRandomVideo(list) {
     return list[Math.floor(Math.random() * list.length)];
   }
 
+  const randomSrc = getRandomVideo(videos);
+  videoSource.src = randomSrc;
+  video.load(); // zaczyna ładować od razu (buforowanie zanim klikniesz)
+
   // === CLICK TO ENTER ===
   overlay.addEventListener("click", () => {
-    const randomSrc = getRandomVideo(videos);
-    videoSource.src = randomSrc;
-    video.muted = false; // od razu z dzwiekim
-    video.load();
+    video.muted = false; // włącz dźwięk po kliknięciu
     video.play();
 
     overlay.classList.add("hidden");
@@ -42,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // anim do nazwy
+  // === ANIMACJA NAZWY STRONY ===
   const titles = [
     "@",
     "@x",
