@@ -12,35 +12,34 @@
 </head>
 
 <body>
-    <!-- PRZYCISK DŹWIĘKU -->
+
     <div id="sound-toggle" class="sound-toggle">
         <i id="sound-icon" class="fas fa-volume-up"></i>
     </div>
 
-    <!-- PRZYCISKI SPOŁECZNOŚCIOWE -->
+
     <div class="social-buttons">
         <a href="https://github.com/x3zny" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
         <a href="https://discord.gg/8WwJjMfJbv" target="_blank" class="social-btn"><i class="fab fa-discord"></i></a>
         <a href="https://youtube.com/x3zny" target="_blank" class="social-btn"><i class="fab fa-youtube"></i></a>
     </div>
 
-    <!-- WIDEO TŁA -->
     <video id="background-video" class="background-video" autoplay loop preload="auto" muted>
         <source id="video-source" src="" type="video/mp4">
         Twoja przeglądarka nie obsługuje tagu wideo.
     </video>
 
-    <!-- AUDIO (jeśli chcesz dodać dźwięk niezależnie od wideo) -->
+
     <audio id="background-audio" loop>
         Twoja przeglądarka nie obsługuje tagu audio.
     </audio>
 
-    <!-- OVERLAY (ekran powitalny) -->
+
     <div id="overlay" class="overlay">
         <div class="overlay-text">Click to enter...</div>
     </div>
 
-    <!-- PRZYCISKI LINKÓW -->
+
     <div class="container">
         <a href="https://cdn.discordapp.com/attachments/1298931128488693771/1416358167516020867/Auto-Lingos_v4_beta3_gui.zip?ex=68f9f855&is=68f8a6d5&hm=c21af45e199e9438a1e30199f95d8eac03848e690d0b63b736eaefd1b3c67654&"
             class="glow-btn" download>Lingos</a>
@@ -48,3 +47,63 @@
         <a href="soon2/index.html" class="glow-btn">soon</a>
         <a href="soon3/index.html" class="glow-btn">soon</a>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const overlay = document.getElementById("overlay");
+            const video = document.getElementById("background-video");
+            const videoSource = document.getElementById("video-source");
+            const soundToggle = document.getElementById("sound-toggle");
+            const soundIcon = document.getElementById("sound-icon");
+
+
+            const videos = [
+                "video/sound1.mp4",
+                "video/sound2.mp4",
+                "video/sound3.mp4",
+                "video/sound5.mp4",
+                "video/sound6.mp4",
+            ];
+
+
+            function getRandomVideo(list) {
+                return list[Math.floor(Math.random() * list.length)];
+            }
+
+            const randomSrc = getRandomVideo(videos);
+            videoSource.src = randomSrc;
+            video.load(); 
+
+            overlay.addEventListener("click", () => {
+                video.muted = false; 
+                video.play();
+                overlay.classList.add("hidden"); 
+            });
+
+
+            soundToggle.addEventListener("click", () => {
+                video.muted = !video.muted;
+
+                if (video.muted) {
+                    soundIcon.classList.remove("fa-volume-up");
+                    soundIcon.classList.add("fa-volume-mute");
+                } else {
+                    soundIcon.classList.remove("fa-volume-mute");
+                    soundIcon.classList.add("fa-volume-up");
+                }
+            });
+
+            const titles = ["@", "@x", "@x3", "@x3z", "@x3zn", "@x3zny", "@x3zn", "@x3z", "@x3", "@x"];
+            let titleIndex = 0;
+
+            function changeTitle() {
+                document.title = titles[titleIndex];
+                titleIndex = (titleIndex + 1) % titles.length;
+            }
+
+            setInterval(changeTitle, 500);
+        });
+    </script>
+</body>
+
+</html>
