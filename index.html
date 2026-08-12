@@ -1,28 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- What are you looking for here? -->
-<!-- msg me on discord "X3zny" -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="media/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-
 <body>
+    <canvas id="snow-canvas"></canvas>
 
     <div id="sound-toggle" class="sound-toggle">
         <i id="sound-icon" class="fas fa-volume-up"></i>
-    </div>
-
-
-    <div class="social-buttons">
-        <a href="https://github.com/x3zny" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
-        <a href="https://discord.gg/8WwJjMfJbv" target="_blank" class="social-btn"><i class="fab fa-discord"></i></a>
-        <a href="https://youtube.com/x3zny" target="_blank" class="social-btn"><i class="fab fa-youtube"></i></a>
     </div>
 
     <video id="background-video" class="background-video" autoplay loop preload="auto" muted>
@@ -30,85 +20,24 @@
         Your browser does not support the video tag.
     </video>
 
-
-    <audio id="background-audio" loop>
-        Your browser does not support the audio tag
-    </audio>
-
-
     <div id="overlay" class="overlay">
         <div class="overlay-text">Click to enter...</div>
     </div>
 
-
     <div class="container">
-        <a href="mods/" class="glow-btn">X3zny Mods</a>
-        <a href="Waifus_rng/main.html" class="glow-btn">soon</a>
-        <a href="soon2/index.html" class="glow-btn">soon</a>
-        <a href="soon3/index.html" class="glow-btn">soon</a>
+        <a href="index.html" class="glow-btn"><span class="glow-btn-inner">soon</span></a>
+        <a href="index.html" class="glow-btn"><span class="glow-btn-inner">soon</span></a>
+        <a href="index.html" class="glow-btn"><span class="glow-btn-inner">soon</span></a>
+        <a href="index.html" class="glow-btn"><span class="glow-btn-inner">soon</span></a>
+
+        <div class="social-buttons">
+            <a href="https://github.com/x3zny" target="_blank" class="social-btn"><span class="social-btn-inner"><i class="fab fa-github"></i></span></a>
+            <a href="https://discord.gg/8WwJjMfJbv" target="_blank" class="social-btn"><span class="social-btn-inner"><i class="fab fa-discord"></i></span></a>
+            <a href="https://youtube.com/x3zny" target="_blank" class="social-btn"><span class="social-btn-inner"><i class="fab fa-youtube"></i></span></a>
+        </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const overlay = document.getElementById("overlay");
-            const video = document.getElementById("background-video");
-            const videoSource = document.getElementById("video-source");
-            const soundToggle = document.getElementById("sound-toggle");
-            const soundIcon = document.getElementById("sound-icon");
-
-
-            const videos = [
-                "media/sound1.webm",
-                "media/sound2.webm",
-                "media/sound3.webm",
-                "media/sound5.webm",
-                "media/sound6.webm",
-            ];
-
-
-            function getRandomVideo(list) {
-                return list[Math.floor(Math.random() * list.length)];
-            }
-
-            const randomSrc = getRandomVideo(videos);
-            videoSource.src = randomSrc;
-            video.load(); 
-
-            overlay.addEventListener("click", () => {
-                video.muted = false; 
-                video.play();
-                overlay.classList.add("hidden"); 
-            });
-
-
-            soundToggle.addEventListener("click", () => {
-                video.muted = !video.muted;
-
-                if (video.muted) {
-                    soundIcon.classList.remove("fa-volume-up");
-                    soundIcon.classList.add("fa-volume-mute");
-                } else {
-                    soundIcon.classList.remove("fa-volume-mute");
-                    soundIcon.classList.add("fa-volume-up");
-                }
-            });
-
-            const titles = ["@", "@x", "@x3", "@x3z", "@x3zn", "@x3zny", "@x3zn", "@x3z", "@x3", "@x"];
-            let titleIndex = 0;
-
-            function changeTitle() {
-                document.title = titles[titleIndex];
-                titleIndex = (titleIndex + 1) % titles.length;
-            }
-
-            setInterval(changeTitle, 500);
-        });
-    </script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/snow.js"></script>
 </body>
-
 </html>
-
-
-
-
-
